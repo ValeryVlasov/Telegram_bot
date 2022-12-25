@@ -8,9 +8,7 @@ import (
 )
 
 const (
-	commandStart           = "start"
-	replyStart             = "Привет! Чтобы сохранять ссылки в своём Pocket аккаунте, тебе нужен доступ. Для этого перейди по ссылке:\n%s"
-	replyAlreadyAuthorized = "Ты уже авторизирован. Отправляй мне ссылку, чтобы я её сохранил."
+	commandStart = "start"
 )
 
 func (b *Bot) handleCommand(message *tgbotapi.Message) error {
@@ -42,13 +40,13 @@ func (b *Bot) handleMessage(message *tgbotapi.Message) error {
 		return errUnableToSave
 	}
 
-	msg := tgbotapi.NewMessage(message.Chat.ID, "Ссылка успешно сохранена")
+	msg := tgbotapi.NewMessage(message.Chat.ID, b.messages.SavedSuccessfully)
 	_, err = b.bot.Send(msg)
 	return err
 }
 
 func (b *Bot) handleUnknownCommand(message *tgbotapi.Message) error {
-	msg := tgbotapi.NewMessage(message.Chat.ID, "Неизвестная команда")
+	msg := tgbotapi.NewMessage(message.Chat.ID, b.messages.UnknownCommand)
 	_, err := b.bot.Send(msg)
 	return err
 }
@@ -59,7 +57,7 @@ func (b *Bot) handleCommandStart(message *tgbotapi.Message) error {
 		return b.initAuthorizationProcess(message)
 	}
 
-	msg := tgbotapi.NewMessage(message.Chat.ID, replyAlreadyAuthorized)
+	msg := tgbotapi.NewMessage(message.Chat.ID, b.messages.AlreadyAuthorized)
 	_, err = b.bot.Send(msg)
 	return err
 }

@@ -29,7 +29,7 @@ type Errors struct {
 type Responses struct {
 	Start             string `mapstructure:"start"`
 	AlreadyAuthorized string `mapstructure:"already_authorized"`
-	SavesSuccessfully string `mapstructure:"saved_successfully"`
+	SavedSuccessfully string `mapstructure:"saved_successfully"`
 	UnknownCommand    string `mapstructure:"unknown_command"`
 }
 
