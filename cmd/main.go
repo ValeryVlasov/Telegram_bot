@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/ValeryVlasov/Telegram_bot/pkg/config"
 	"github.com/ValeryVlasov/Telegram_bot/pkg/repository"
 	"github.com/ValeryVlasov/Telegram_bot/pkg/repository/boltdb"
 	"github.com/ValeryVlasov/Telegram_bot/pkg/server"
@@ -12,6 +13,13 @@ import (
 )
 
 func main() {
+	cfg, err := config.Init()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	log.Println(cfg)
+
 	bot, err := tgbotapi.NewBotAPI("MyTelegramBotAPI")
 	if err != nil {
 		log.Fatal(err)
