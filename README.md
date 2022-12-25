@@ -16,7 +16,7 @@ make build-image
 make start-container
 ```
 
-# Пример работы бота
+## Пример работы бота:
 
 ![alt text](assets/work_example.jpg)
 
